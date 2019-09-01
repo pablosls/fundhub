@@ -2,17 +2,19 @@
 <html lang="en">
 
 <head>
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta charset="utf-8">
-  <title>Decotaste</title>
+  <title>FundHub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css">
+  <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
   <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
     <div class="container">
-      <a href="/" class="navbar-brand">Decotaste</a>
+      <a href="/" class="navbar-brand">FundHub</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -54,18 +56,22 @@
 
 
 
-        <div class="row">
+        <div class="row" id="procurando">
           <div class="col-lg-12">
 
             <div class="bs-component">
               <div class="jumbotron">
-                <h1 class="display-3">Procurando!</h1>
+
+                <div id="loader">
+                  <img src="/static/img/loader_06.gif" width="200px" height="200px" />
+                </div>
+                <h1 class="display-4">Procurando!</h1>
                 <p class="lead"> Aguarde! Estamos procurando o produto em nossas lojas </p>
                 <hr class="my-4">
-                <p class="lead">
-                  <a class="btn btn-primary btn-lg" href="/">Efetuar nova busca</a>
-                  <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Efetuar nova busca</a> -->
-                </p>
+
+
+
+
               </div>
             </div>
           </div>
@@ -79,24 +85,23 @@
             Produto: <div class="lead" id="produto"></div>
           </div>
 
+          <br />
+          <br />
+
           <a class="btn btn-primary btn-lg" href="/agende">Agende um horário</a>
 
+          <br />
+          <br />
+          <a class="btn btn-primary btn-lg" href="/">Efetuar nova busca</a>
+          <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Efetuar nova busca</a> -->
+
+
+          <br />
+          <br />
 
 
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="col-lg-7">
-          <p class="bs-component">
-            <button type="button" class="btn btn-primary">Primary</button>
-            <button type="button" class="btn btn-secondary">Secondary</button>
-            <button type="button" class="btn btn-success">Success</button>
-            <button type="button" class="btn btn-info">Info</button>
-            <button type="button" class="btn btn-warning">Warning</button>
-            <button type="button" class="btn btn-danger">Danger</button>
-          </p>
-        </div>
-      </div> -->
     </div>
     <div id="source-modal" class="modal fade" tabindex='-1'>
       <div class="modal-dialog modal-lg">
@@ -140,7 +145,7 @@
           //alert(Resultado = result.images[0].classifiers[0].classes[0].class);
 
           $('#resultado').show();
-
+          $('#procurando').hide();
 
           var retorno = result.images[0].classifiers[0].classes[0].class;
 

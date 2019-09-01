@@ -86,63 +86,24 @@ app.get('/Find', (req, res) => {
     nome = files[0];
     console.log("nome", nome);
 
-    //console.log("ultimo arquivo", lastFile)
-    var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
-
-    var visualRecognition = new VisualRecognitionV3({
-        version: '2018-03-19',
-        iam_apikey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-    });
-
-
-    var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
-
-
-    var visualRecognition = new VisualRecognitionV3({
-        version: '2018-03-19',
-        iam_apikey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-    });
-    //console.log(directoryPath, lastFile);
-    //var novo = path.join(directoryPath,"\\", lastFile);
-    //console.log(novo);
-
     var img = "./uploads/" + nome;
 
-
-
     var images_file = fs.createReadStream(img);
-    var classifier_ids = ["DefaultCustomModel_1915049257"];
+ 
     var threshold = 0.6;
 
-    var params = {
-        images_file: images_file,
-        classifier_ids: classifier_ids,
-        threshold: threshold
-    };
-
-    visualRecognition.classify(params, function (err, response) {
-        if (err) {
-            console.log(err);
-            fs.unlinkSync(img);
-            res.json({
-                mensagem: "erro"
-            })
-        } else {
-            console.log(JSON.stringify(response, null, 2))
-            fs.unlinkSync(img);
-            res.json(response);
-            // Consulta IBM watson
-        }
-    });
-
+    res.json({
+        mensagem: "ok"
+    })
 })
 
 app.post('/', upload.single('img'), (req, res) => {
     console.log(req.body, req.file);
 
-    // include node fs module
     var fs = require('fs');
     res.sendFile(path.join(__dirname + '/resultado.html'));
 })
 
-app.listen(80, () => console.log("Running na porta 3000"))
+const port = process.env.PORT || 3000
+
+app.listen(port, () => console.log("Running na porta 3000"))

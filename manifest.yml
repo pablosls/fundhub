@@ -1,0 +1,7 @@
+---
+applications:
+- name: FundHub
+  path: .
+  memory: 512M
+  instances: 1
+  random-route: false
